@@ -1,0 +1,2063 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Itinerário Nápoles, Puglia & Costa Amalfitana 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #f8f7f4;
+      --bg-card: #ffffff;
+      --bg-surface: #f1efe9;
+      --bg-hover: #eceae3;
+      
+      --text-primary: #1a1a18;
+      --text-secondary: #575651;
+      --text-muted: #84827a;
+      
+      --border-light: #e6e3dc;
+      --border-strong: #d2cebf;
+      
+      --accent-terracotta: #c45434;
+      --accent-terracotta-soft: #faeee9;
+      --accent-olive: #436551;
+      --accent-olive-soft: #ebf2ed;
+      --accent-navy: #1f3a5f;
+      --accent-navy-soft: #edf2f8;
+      --accent-lemon: #d4981d;
+      --accent-lemon-soft: #fcf6e6;
+      
+      --shadow-sm: 0 2px 8px rgba(26, 26, 24, 0.04);
+      --shadow-md: 0 8px 24px rgba(26, 26, 24, 0.06);
+      --shadow-lg: 0 16px 40px rgba(26, 26, 24, 0.09);
+      
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-pill: 9999px;
+      
+      --transition-smooth: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* Top Progress Bar & Header */
+    .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: rgba(248, 247, 244, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      z-index: 100;
+    }
+
+    .progress-track {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--border-light);
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--accent-terracotta);
+      transition: width 0.3s ease;
+    }
+
+    .brand-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-primary);
+    }
+
+    .brand-title span.flag {
+      font-size: 1.25rem;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .slide-indicator {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+    }
+
+    .icon-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      color: var(--text-primary);
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-pill);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .icon-btn:hover {
+      background: var(--bg-surface);
+      border-color: var(--border-strong);
+      transform: translateY(-1px);
+    }
+
+    /* Deck Viewport */
+    .deck-viewport {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 20px 90px 20px;
+      min-height: 100vh;
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .slide {
+      display: none;
+      width: 100%;
+      max-width: 1050px;
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-md);
+      padding: 40px;
+      opacity: 0;
+      transform: translateY(12px) scale(0.99);
+      transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.2, 0.8, 0.4, 1);
+    }
+
+    .slide.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Typography & Utilities */
+    .serif {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .tag-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 14px;
+    }
+
+    .tag-terracotta { background: var(--accent-terracotta-soft); color: var(--accent-terracotta); }
+    .tag-olive { background: var(--accent-olive-soft); color: var(--accent-olive); }
+    .tag-navy { background: var(--accent-navy-soft); color: var(--accent-navy); }
+    .tag-lemon { background: var(--accent-lemon-soft); color: var(--accent-lemon); }
+
+    .slide-header {
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .slide-title-group h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .slide-subtitle {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hotel-pill-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      padding: 10px 16px;
+      border-radius: var(--radius-md);
+      font-size: 0.88rem;
+      text-align: right;
+    }
+
+    .hotel-pill-box strong {
+      display: block;
+      color: var(--text-primary);
+      font-size: 0.95rem;
+    }
+
+    .hotel-pill-box span {
+      color: var(--text-muted);
+      font-size: 0.82rem;
+    }
+
+    /* Grid Layouts inside slides */
+    .slide-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 32px;
+    }
+
+    .card-block {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      margin-bottom: 20px;
+      transition: var(--transition-smooth);
+    }
+
+    .card-block:hover {
+      border-color: var(--border-strong);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-block h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Timeline Component */
+    .timeline {
+      position: relative;
+      padding-left: 24px;
+      margin: 10px 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: var(--border-strong);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 18px;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -24px;
+      top: 4px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 3px solid var(--accent-terracotta);
+    }
+
+    .timeline-time {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--accent-terracotta);
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .timeline-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 3px;
+    }
+
+    .timeline-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    /* Highlights & Tips Box */
+    .highlight-alert {
+      border-left: 4px solid var(--accent-olive);
+      background: var(--accent-olive-soft);
+      padding: 16px 18px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      line-height: 1.5;
+      margin-top: 14px;
+    }
+
+    .highlight-alert.warning {
+      border-left-color: var(--accent-terracotta);
+      background: var(--accent-terracotta-soft);
+    }
+
+    .highlight-alert strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--text-primary);
+    }
+
+    /* Quick Action Buttons */
+    .action-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid var(--border-strong);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .btn-action:hover {
+      background: var(--text-primary);
+      color: var(--bg-card);
+      border-color: var(--text-primary);
+      transform: translateY(-1px);
+    }
+
+    .btn-action.primary {
+      background: var(--accent-navy);
+      color: #ffffff;
+      border-color: var(--accent-navy);
+    }
+
+    .btn-action.primary:hover {
+      background: #142842;
+      border-color: #142842;
+    }
+
+    /* Bottom Navigation Bar & Dock */
+    .bottom-dock {
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-strong);
+      box-shadow: var(--shadow-lg);
+      border-radius: var(--radius-pill);
+      padding: 6px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 100;
+      max-width: 96vw;
+      overflow-x: auto;
+    }
+
+    .dock-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: var(--transition-smooth);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dock-btn:hover {
+      background: var(--bg-surface);
+      color: var(--text-primary);
+    }
+
+    .dock-btn.active {
+      background: var(--text-primary);
+      color: #ffffff;
+    }
+
+    .dock-divider {
+      width: 1px;
+      height: 20px;
+      background: var(--border-light);
+      margin: 0 4px;
+    }
+
+    .dock-nav-arrow {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      color: var(--text-primary);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      font-size: 0.9rem;
+    }
+
+    .dock-nav-arrow:hover {
+      background: var(--text-primary);
+      color: #fff;
+    }
+
+    /* Drawer Sidebar */
+    .drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(26, 26, 24, 0.4);
+      backdrop-filter: blur(4px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 200;
+    }
+
+    .drawer-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .drawer {
+      position: fixed;
+      top: 0;
+      right: -360px;
+      width: 340px;
+      height: 100%;
+      background: var(--bg-card);
+      box-shadow: var(--shadow-lg);
+      transition: right 0.35s cubic-bezier(0.2, 0.8, 0.4, 1);
+      z-index: 201;
+      display: flex;
+      flex-direction: column;
+      padding: 24px;
+      overflow-y: auto;
+    }
+
+    .drawer.open {
+      right: 0;
+    }
+
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .drawer-header h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+    }
+
+    .drawer-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .drawer-item {
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: var(--transition-smooth);
+      color: var(--text-secondary);
+    }
+
+    .drawer-item:hover {
+      background: var(--bg-surface);
+      color: var(--text-primary);
+    }
+
+    .drawer-item.active {
+      background: var(--accent-navy-soft);
+      color: var(--accent-navy);
+      font-weight: 700;
+    }
+
+    /* Cover Slide Specifics */
+    .cover-content {
+      text-align: center;
+      padding: 30px 10px;
+    }
+
+    .cover-hero-tag {
+      display: inline-block;
+      font-size: 0.82rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--accent-terracotta);
+      margin-bottom: 16px;
+    }
+
+    .cover-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.2rem;
+      line-height: 1.15;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+    }
+
+    .cover-desc {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 680px;
+      margin: 0 auto 36px auto;
+      line-height: 1.6;
+    }
+
+    .macro-route-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    .route-pill {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      padding: 10px 18px;
+      border-radius: var(--radius-pill);
+      font-size: 0.95rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .stat-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      padding: 16px;
+      border-radius: var(--radius-md);
+      text-align: center;
+    }
+
+    .stat-card .val {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent-navy);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .stat-card .lbl {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    /* Financial Table Styling */
+    .table-container {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.92rem;
+    }
+
+    table.data-table th {
+      background: var(--bg-surface);
+      color: var(--text-secondary);
+      font-weight: 600;
+      padding: 12px 16px;
+      border-bottom: 2px solid var(--border-strong);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    table.data-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-light);
+      color: var(--text-primary);
+    }
+
+    table.data-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    table.data-table tr.total-row {
+      font-weight: 700;
+      background: var(--bg-surface);
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--text-primary);
+      color: #fff;
+      padding: 10px 22px;
+      border-radius: var(--radius-pill);
+      font-size: 0.85rem;
+      font-weight: 600;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.4, 1);
+      z-index: 300;
+      box-shadow: var(--shadow-md);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Responsiveness */
+    @media (max-width: 900px) {
+      .slide-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .slide {
+        padding: 24px 20px;
+      }
+      .slide-title-group h2 {
+        font-size: 1.6rem;
+      }
+      .cover-title {
+        font-size: 2.2rem;
+      }
+      .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .hotel-pill-box {
+        text-align: left;
+        width: 100%;
+      }
+      .deck-viewport {
+        padding: 70px 12px 110px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header & Progress -->
+  <header class="top-bar">
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    
+    <div class="brand-title">
+      <span class="flag">🇮🇹</span>
+      <span>Grand Tour Itália 2026</span>
+    </div>
+
+    <div class="header-actions">
+      <div class="slide-indicator" id="slideNumber">01 / 18</div>
+      <button class="icon-btn" id="menuToggle" title="Sumário da Viagem">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Slides Viewport -->
+  <main class="deck-viewport" id="deckViewport">
+
+    <!-- SLIDE 0: Capa & Visão Macro -->
+    <section class="slide active" data-title="Capa">
+      <div class="cover-content">
+        <span class="cover-hero-tag">Planejamento Executivo de Viagem</span>
+        <h1 class="cover-title">Nápoles, Puglia, Capri & Costa Amalfitana</h1>
+        <p class="cover-desc">
+          Um roteiro de 15 dias desenhado sob medida para equilibrar imersão cultural no sul da Itália, liberdade rodoviária no Vale d'Itria, glamour marítimo em Capri e a celebração do casamento em Salerno.
+        </p>
+
+        <div class="macro-route-pills">
+          <div class="route-pill">🍕 Nápoles (06 a 09/10)</div>
+          <div class="route-pill">🫒 Puglia & Matera (09 a 12/10)</div>
+          <div class="route-pill">🛥️ Capri (12 a 14/10)</div>
+          <div class="route-pill">🍋 Salerno & Costa Amalfitana (14 a 18/10)</div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-card">
+            <span class="val">15 Dias</span>
+            <span class="lbl">Duração Total</span>
+          </div>
+          <div class="stat-card">
+            <span class="val">4 Bases</span>
+            <span class="lbl">Hospedagens 100% Fechadas</span>
+          </div>
+          <div class="stat-card">
+            <span class="val">16/10</span>
+            <span class="lbl">Casamento em Salerno</span>
+          </div>
+          <div class="stat-card">
+            <span class="val">R$ 29.372</span>
+            <span class="lbl">Custos Fixos Consolidados</span>
+          </div>
+        </div>
+
+        <div style="margin-top: 36px;">
+          <button class="btn-action primary" onclick="nextSlide()">Começar Roteiro Dia a Dia →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 1: Dia 05/10 (Seg) -->
+    <section class="slide" data-title="05 Out - Embarque SP">
+      <div class="slide-header">
+        <div class="slide-title-group">
+          <span class="tag-badge tag-navy">Dia 1 • Segunda-feira, 05 de Outubro de 2026</span>
+          <h2>Partida de São Paulo rumo à Itália</h2>
+          <p class="slide-subtitle">Início da jornada aérea saindo do Brasil</p>
+        </div>
+        <div class="hotel-pill-box">
+          <strong>✈️ Voo Noturno Internacional</strong>
+          <span>LATAM Airlines (GRU ➔ FRA)</span>
+        </div>
+      </div>
+
+      <div class="slide-grid">
+        <div>
+          <div class="card-block">
+            <h3>⏰ Cronograma de Embarque</h3>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">20h30</div>
+                <div class="timeline-title">Chegada no Aeroporto de Guarulhos (GRU)</div>
+                <div class="timeline-desc">Apresentação no Terminal 3 com 3 horas de antecedência para despacho de malas e controle de raio-x.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">23h45</div>
+                <div class="timeline-title">Decolagem Voo LATAM</div>
+                <div class="timeline-desc">Voo transatlântico rumo à Europa com destino à conexão em Frankfurt. Noite a bordo.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card-block">
+            <h3>📋 Checklist de Bagagem & Documentos</h3>
+            <ul style="padding-left: 18px; line-height: 1.7; font-size: 0.9rem; color: var(--text-secondary);">
+              <li>Passaportes válidos com validade superior a 6 meses;</li>
+              <li>PID (Permissão Internacional para Dirigir) impressa para a locação de carro na Puglia;</li>
+              <li>Seguro viagem obrigatório com cobertura Schengen;</li>
+              <li>Cartão de crédito com limite disponível desbloqueado para o caução da locadora;</li>
+              <li>Roupas leves de meia-estação + casaco leve para as noites em Capri e na Costa.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: Dia 06/10 (Ter) -->
+    <section class="slide" data-title="06 Out - Chegada Nápoles">
+      <div class="slide-header">
+        <div class="slide-title-group">
+          <span class="tag-badge tag-terracotta">Dia 2 • Terça-feira, 06 de Outubro de 2026</span>
+          <h2>Conexão Frankfurt & Pouso em Nápoles</h2>
+          <p class="slide-subtitle">Chegada noturna e instalação na base do Vomero</p>
+        </div>
+        <div class="hotel-pill-box">
+          <strong>🍕 Hotel Cimarosa (3 noites)</strong>
+          <span>Via Cimarosa 29, 5° Piano, Vomero</span>
+        </div>
+      </div>
+
+      <div class="slide-grid">
+        <div>
+          <div class="card-block">
+            <h3>⏰ Timeline da Noite</h3>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">Tarde</div>
+                <div class="timeline-title">Conexão em Frankfurt (4h15)</div>
+                <div class="timeline-desc"><strong>A imigração do Espaço Schengen é feita aqui!</strong> Em Nápoles não há controle de passaporte.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">22h40</div>
+                <div class="timeline-title">Pouso no Aeroporto de Nápoles (Capodichino)</div>
+                <div class="timeline-desc">Desembarque direto. Saída para o ponto oficial de táxi ou transfer privativo.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">23h25 ~ 23h55</div>
+                <div class="timeline-title">Chegada no Hotel Cimarosa</div>
+                <div class="timeline-desc">Subida de carro de apenas 18 min pela Tangenziale di Napoli. Check-in e descanso.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="highlight-alert warning">
+            <strong>⚠️ Alerta de Recepção (Hotel Cimarosa):</strong>
+            A recepção fecha às <strong>23h30</strong>. Avise o hotel com antecedência sobre o voo para garantir a espera do recepcionista ou o código da portaria!
+          </div>
+
+          <div class="card-block" style="margin-top: 16px;">
+            <h3>🚕 Regra de Ouro do Táxi</h3>
+            <p style="font-size: 0.88rem; line-height: 1.5; color: var(--text-secondary);">
+              Exija a <strong>Tarifa Fixa Municipal (*Tariffa Prestabilita*) de € 23,00</strong> antes de entrar no táxi branco oficial. Ela inclui malas, noite e pedágio até o Vomero.
+            </p>
+            <div class="action-links">
+              <button class="btn-action" onclick="copyAddress('Via Cimarosa 29, 5° Piano, Vomero, 80127 Nápoles, Itália')">Copiar Endereço</button>
+              <a class="btn-action primary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Via+Cimarosa+29+Vomero+Napoli">Abrir no Maps ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: Dia 07/10 (Qua) -->
+    <section class="slide" data-title="07 Out - Nápoles Clássica">
+      <div class="slide-header">
+        <div class="slide-title-group">
+          <span class="tag-badge tag-terracotta">Dia 3 • Quarta-feira, 07 de Outubro de 2026</span>
+          <h2>Nápoles Histórica: Vielas, Arte & Pizzas Lendárias</h2>
+          <p class="slide-subtitle">Exploração do coração vibrante de Spaccanapoli</p>
+        </div>
+        <div class="hotel-pill-box">
+          <strong>Base: Vomero</strong>
+          <span>Hotel Cimarosa</span>
+        </div>
+      </div>
+
+      <div class="slide-grid">
+        <div>
+          <div class="card-block">
+            <h3>🗺️ Roteiro Sugerido do Dia</h3>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">Manhã (09h30)</div>
+                <div class="timeline-title">Descida Panorâmica pelo Funicolar</div>
+                <div class="timeline-desc">Pegue a <em>Funicolare di Montesanto</em> na porta do hotel. Desça em 10 min direto no Centro Histórico.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">10h30 ~ 13h00</div>
+                <div class="timeline-title">Spaccanapoli & Cappella Sansevero</div>
+                <div class="timeline-desc">Caminhe pelas ruelas de pedras, visite o impressionante <em>Cristo Velato</em> e a rua dos presépios (*San Gregorio Armeno*).</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">13h30</div>
+                <div class="timeline-title">A Autêntica Pizza Napolitana</div>
+                <div class="timeline-desc">Almoço clássico: <em>L'Antica Pizzeria da Michele</em> (Margarita e Marinara) ou <em>Gino Sorbillo</em> na Via Tribunali.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">Fim de Tarde</div>
+                <div class="timeline-title">Pôr do Sol no Castel Sant'Elmo</div>
+                <div class="timeline-desc">Suba de volta ao Vomero para ver o entardecer do ponto mais alto de Nápoles, com vista panorâmica do Vesúvio e do Golfo.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card-block">
+            <h3>🚇 Dica de Mobilidade Urbana</h3>
+            <p style="font-size: 0.9rem; line-height: 1.5; color: var(--text-secondary); margin-bottom: 12px;">
+              No Vomero a dinâmica é vertical: <strong>desça para turistar, suba para descansar</strong>. As catracas do metrô e funiculares aceitam pagamento por aproximação (*Tap & Go*) direto no cartão por €1,50.
+            </p>
+            <div class="highlight-alert">
+              <strong>☕ Pausa Obrigatória:</strong>
+              Prove uma <em>Sfogliatella Riccia</em> quentinha no histórico <strong>Gran Caffè Gambrinus</strong> ao lado da Piazza del Plebiscito.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: Dia 08/10 (Qui) -->
+    <section class="slide" data-title="08 Out - Pompeia ou Orla">
+      <div class="slide-header">
+        <div class="slide-title-group">
+          <span class="tag-badge tag-terracotta">Dia 4 • Quinta-feira, 08 de Outubro de 2026</span>
+          <h2>Dia Livre: Pompeia Arqueológica ou Orla de Chiaia</h2>
+          <p class="slide-subtitle">História clássica romana ou contemplação à beira-mar</p>
+        </div>
+        <div class="hotel-pill-box">
+          <strong>Base: Vomero</strong>
+          <span>Hotel Cimarosa (Última noite)</span>
+        </div>
+      </div>
+
+      <div class="slide-grid">
+        <div>
+          <div class="card-block">
+            <h3>Opção A: Bate-Volta Pompeia (Recomendado)</h3>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 12px;">
+              Pegue o metrô Linha 1 até Napoli Centrale e embarque no trem <em>Circumvesuviano</em> até a estação <em>Pompei Scavi</em> (35 min).
+            </p>
+            <ul style="padding-left: 18px; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6;">
+              <li>Explore as ruínas preservadas pelas cinzas do Vesúvio em 79 d.C.;</li>
+              <li>Visite o Fórum, os afrescos da Villa dos Mistérios e o Teatro Romano;</li>
+              <li>Retorno a Nápoles no início da tarde.</li>
+            </ul>
+          </div>
+
+          <div class="card-block">
+            <h3>Opção B: Orla de Chiaia & Castel dell'Ovo</h3>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5;">
+              Desça de Funicolar até a Via Chiaia e caminhe pelo calçadão do *Lungomare Caracciolo* curtindo a brisa marítima e almoço de frutos do mar no Borgo Marinari.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <div class="card-block">
+            <h3>🎒 Preparação para o dia seguinte</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 12px;">
+              Amanhã começa a etapa rodoviária da viagem! Deixe as malas organizadas para check-out pontual às <strong>08h30</strong>.
+            </p>
+            <div class="highlight-alert">
+              <strong>Pedir táxi na recepção:</strong>
+              Combine na recepção do Cimarosa a chamada de um táxi oficial para às 08h30 com destino à <em>Napoli Centrale</em> para retirada do carro.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: Dia 09/10 (Sex) -->
+    <section class="slide" data-title="09 Out - Matera & Puglia">
+      <div class="slide-header">
+        <div class="slide-title-group">
+          <span class="tag-badge tag-olive">Dia 5 • Sexta-feira, 09 de Outubro de 2026</span>
+          <h2>Retirada do Carro, Sassi di Matera & Chegada na Puglia</h2>
+          <p class="slide-subtitle">Cruzando a península da costa oeste ao coração do Vale d'Itria</p>
+        </div>
+        <div class="hotel-pill-box">
+          <strong>🫒 B&B Pietra Pesara (3 noites)</strong>
+          <span>Contrada Catuscio Nunzio 9, Locorotondo</span>
+        </div>
+      </div>
+
+      <div class="slide-grid">
+        <div>
+          <div class="card-block">
+            <h3>⏰ Cronograma da Rota</h3>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">08h30</div>
+                <div class="timeline-title">Táxi Vomero ➔ Napoli Centrale</div>
+                <div class="timeline-desc">15 minutos descendo a colina. Desembarque no balcão de locação e pátio da garagem *FS Park - Corso Meridionale, 60*.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">09h15 ~ 12h30</div>
+                <div class="timeline-title">Estrada Nápoles ➔ Matera (~300 km)</div>
+                <div class="timeline-desc">Autoestrada A16 Napoli-Canosa e conexão na panorâmica SS407 Basentana.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">12h30 ~ 16h30</div>
+                <div class="timeline-title">Visita Mágica a Matera</div>
+                <div class="timeline-desc">Estacione no <strong>Parcheggio Saragat</strong> (seguro, coberto, fora da ZTL). Almoço lucano e caminhada pelos milenares *Sassi*.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">18h00</div>
+                <div class="timeline-title">Chegada no B&B Pietra Pesara</div>
+                <div class="timeline-desc">Trajeto de 1h15 de Matera a Locorotondo. Check-in tranquilo com estacionamento privativo e jantar em Locorotondo.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="highlight-alert">
+            <strong>🅿️ Dica Vital em Matera:</strong>
+            Os Sassi são 100% pedestres e ZTL. Nunca entre com o carro. O <em>Parcheggio Saragat</em> fica a 8 min a pé dos mirantes com segurança total para as malas.
+          </div>
+
+          <div class="card-block" style="margin-top: 16px;">
+            <h3>📍 Acomodação na Puglia</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 12px;">
+              Estrutura rústica típica com jardim e paz absoluta no Vale d'Itria, a 2 km do centro histórico.
+            </p>
+            <div class="action-links">
+              <button class="btn-action" onclick="copyAddress('Contrada Catuscio Nunzio 9, 70010 Locorotondo BA, Itália')">Copiar Endereço</button>
+              <a class="btn-action primary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Contrada+Catuscio+Nunzio+9+Locorotondo">Abrir no Maps ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: Dia 10/10 (Sáb) -->
+    <section class="slide" data-title="10 Out - Polignano & Monopoli">
+      <div class="slide-header">
+        <div class="slide-title-group">
+          <span class="tag-badge tag-olive">Dia 6 • Sábado, 10 de Outubro de 2026</span>
+          <h2>Litoral Adriático: As Falésias de Polignano & Monopoli</h2>
+          <p class="slide-subtitle">O azul profundo do mar da Puglia e charmosos portos de pesca</p>
+        </div>
+        <div class="hotel-pill-box">
+          <strong>Base: Vale d'Itria</strong>
+          <span>B&B Pietra Pesara (Locorotondo)</span>
+        </div>
+      </div>
+
+      <div class="slide-grid">
+        <div>
+          <div class="card-block">
+            <h3>🌊 Manhã em Polignano a Mare (35 min da base)</h3>
+            <ul style="padding-left: 18px; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
+              <li>Visita à famosa enseada de seixos brancos de <strong>Lama Monachile</strong>;</li>
+              <li>Mirantes sobre as falésias de calcário debruçadas no Mar Adriático;</li>
+              <li>Monumento a Domenico Modugno (autor da clássica canção <em>"Volare"</em>);</li>
+              <li>Parada para provar o clássico *Caffè Speciale* (com raspas de limão e amaretto).</li>
+            </ul>
+          </div>
+
+          <div class="card-block">
+            <h3>⚓ Tarde em Monopoli (15 min de Polignano)</h3>
+            <ul style="padding-left: 18px; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
+              <li>Caminhada pelo centro antigo murado e pelo pitoresco *Porto Vecchio* com seus barcos azuis tradicionais (*gozzi*);</li>
+              <li>Almoço tardio de frutos do mar frescos e polvo grelhado;</li>
+              <li>Retorno relaxante de 25 minutos pela estrada rural para Locorotondo.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <div class="card-block">
+            <h3>🚗 Dica de Estacionamento</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 10px;">
+              Tanto em Polignano quanto em Monopoli, deixe o carro nos bolsões pagos de faixa azul fora das muralhas históricas (ex: <em>Parcheggio San Francesco</em> em Polignano).
+            </p>
+            <div class="highlight-alert">
+              <strong>🍷 Dica Noturna:</strong>
+              Jante em Locorotondo. As vielas circulares brancas iluminadas à noite têm restaurantes maravilhosos servindo <em>orecchiette</em> frescas e carnes na brasa (*bombette pugliesi*).
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: Dia 11/10 (Dom) -->
+    <section class="slide" data-title="11 Out - Trulli Alberobello">
+      <div class="slide-header">
+        <div class="slide-title-group">
+          <span class="tag-badge tag-olive">Dia 7 • Domingo, 11 de Outubro de 2026</span>
+          <h2>O Encanto dos Trulli de Alberobello & Vilarejos Brancos</h2>
+          <p class="slide-subtitle">Patrimônio Mundial da UNESCO a minutos de casa</p>
+        </div>
+        <div class="hotel-pill-box">
+          <strong>Base: Vale d'Itria</strong>
+          <span>B&B Pietra Pesara (Última noite)</span>
+        </div>
+      </div>
+
+      <div class="slide-grid">
+        <div>
+          <div class="card-block">
+            <h3>🏡 Manhã Cedo em Alberobello (Apenas 10 min de carro!)</h3>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 10px;">
+              Como seu hotel fica a apenas 9 km de Alberobello, saia às 08h45 para ver a cidade acordar sem as excursões de ônibus.
+            </p>
+            <ul style="padding-left: 18px; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6;">
+              <li><strong>Rione Monti:</strong> A colina com mais de 1.000 trulli cônicos de pedra;</li>
+              <li><strong>Aia Piccola:</strong> O bairro residencial autêntico e silencioso, sem lojas de souvenirs;</li>
+              <li>Subida até o mirante do <em>Belvedere Santa Lucia</em>.</li>
+            </ul>
+          </div>
+
+          <div class="card-block">
+            <h3>Tarde pelos Vilarejos do Vale d'Itria</h3>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5;">
+              Visite a barroca <strong>Martina Franca</strong> (a 8 min) com seus palácios elegantes ou <strong>Cisternino</strong>, famosa pelos açougues artesanais com mesas na calçada (*fornelli pronti*).
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <div class="card-block">
+            <h3>🌅 Despedida da Puglia</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 12px;">
+              Aproveite o final de tarde para caminhar no calçadão panorâmico de Locorotondo (a <em>Lungomare delle Murge</em>) com uma taça de vinho branco local Locorotondo DOC.
+            </p>
+            <div class="highlight-alert">
+              <strong>Atenção para amanhã:</strong>
+              Saída programada para às <strong>08h00</strong> após o café. São 3h30 de estrada de volta a Nápoles para devolução do carro e balsa para Capri!
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: Dia 12/10 (Seg) -->
+    <section class="slide" data-title="12 Out - Volta & Capri">
+      <div class="slide-header">
+        <div class="slide-title-group">
+          <span class="tag-badge tag-navy">Dia 8 • Segunda-feira, 12 de Outubro de 2026</span>
+          <h2>Puglia ➔ Devolução do Carro em Nápoles ➔ Balsa para Capri</h2>
+          <p class="slide-subtitle">Transição fluida da estrada para o mar tirreno</p>
+        </div>
+        <div class="hotel-pill-box">
+          <strong>🛥️ Hotel Weber Ambassador (2 noites)</strong>
+          <span>Via Marina Piccola 118, Capri</span>
+        </div>
+      </div>
+
+      <div class="slide-grid">
+        <div>
+          <div class="card-block">
+            <h3>⏰ Cronograma Sem Correria</h3>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">08h00</div>
+                <div class="timeline-title">Saída com Calma de Locorotondo</div>
+                <div class="timeline-desc">Café tomado e partida via autoestrada A14/A16 (~330 km de pista dupla rápida). Parada para café no trajeto.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">11h45 ~ 12h15</div>
+                <div class="timeline-title">Chegada em Nápoles & Devolução</div>
+                <div class="timeline-desc">Encher o tanque no posto da entrada e entregar o carro na garagem oficial da estação (Corso Meridionale 60).</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">12h25</div>
+                <div class="timeline-title">Táxi para o Porto (Molo Beverello)</div>
+                <div class="timeline-desc">Apenas 10 minutos com tarifa fixa municipal de €13.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">13h30 ou 14h00</div>
+                <div class="timeline-title">Embarque no Hidrofólio para Capri</div>
+                <div class="timeline-desc">Compre no guichê do porto na hora (saídas frequentes: 12h40, 13h30, 14h00, 14h40). Apenas 45 min no mar!</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">14h45 ~ 15h30</div>
+                <div class="timeline-title">Check-in no Weber Ambassador</div>
+                <div class="timeline-desc">Transfer do hotel aguarda em Marina Grande. Tarde inteira livre para curtir a vista dos Faraglioni!</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="highlight-alert">
+            <strong>🎟️ Dica de Ouro das Balsas:</strong>
+            Não precisa comprar o ferry com antecedência! As saídas são quase de meia em meia hora. Comprando no guichê ao chegar, você elimina qualquer pressão na estrada.
+          </div>
+
+          <div class="card-block" style="margin-top: 16px;">
+            <h3>📍 Acomodação em Capri</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 12px;">
+              Debruçado sobre a baía de Marina Piccola com vista direta para os Faraglioni. O hotel tem <strong>navetta gratuita contínua até às 02h da manhã</strong> subindo para a Piazzetta!
+            </p>
+            <div class="action-links">
+              <button class="btn-action" onclick="copyAddress('Via Marina Piccola 118, 80073 Capri NA, Itália')">Copiar Endereço</button>
+              <a class="btn-action primary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Hotel+Weber+Ambassador+Capri">Abrir no Maps ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: Dia 13/10 (Ter) -->
+    <section class="slide" data-title="13 Out - Glamour em Capri">
+      <div class="slide-header">
+        <div class="slide-title-group">
+          <span class="tag-badge tag-navy">Dia 9 • Terça-feira, 13 de Outubro de 2026</span>
+          <h2>O Melhor de Capri & Anacapri: Faraglioni e Monte Solaro</h2>
+          <p class="slide-subtitle">Vistas espetaculares de 360° e elegância mediterrânea</p>
+        </div>
+        <div class="hotel-pill-box">
+          <strong>Base: Marina Piccola</strong>
+          <span>Hotel Weber Ambassador</span>
+        </div>
+      </div>
+
+      <div class="slide-grid">
+        <div>
+          <div class="card-block">
+            <h3>☀️ Manhã em Anacapri & Monte Solaro</h3>
+            <ul style="padding-left: 18px; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
+              <li>Suba de táxi conversível ou micro-ônibus até Anacapri;</li>
+              <li>Embarque no teleférico individual (*seggiovia*) até o topo do <strong>Monte Solaro</strong> (589m de altitude);</li>
+              <li>A vista mais impressionante de todo o Golfo de Nápoles e das ilhas vizinhas;</li>
+              <li>Visita à charmosa Villa San Michele e seus jardins com esfinges de granito.</li>
+            </ul>
+          </div>
+
+          <div class="card-block">
+            <h3>Tarde Náutica & Faraglioni</h3>
+            <ul style="padding-left: 18px; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6;">
+              <li>Almoço em Marina Piccola ou no restaurante dos beach clubs;</li>
+              <li>Passeio clássico de barco contornando os <strong>Faraglioni</strong> (passando por dentro do arco de pedra) e a Gruta Verde/Branca;</li>
+              <li>Fim de tarde: Pegue a navetta gratuita do hotel para tomar um drink na icônica <strong>Piazzetta de Capri</strong>.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <div class="card-block">
+            <h3>🍋 Experiência Gastronômica</h3>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 12px;">
+              Jantar sugerido: <strong>Ristorante Da Paolino</strong> (famoso por suas mesas sob um teto natural de centenas de limões sicilianos gigantes) ou <strong>Villa Verde</strong>.
+            </p>
+            <div class="highlight-alert">
+              <strong>Mobilidade sem custo:</strong>
+              Lembre-se de que a van gratuita do Weber Ambassador circula entre o hotel e a Piazzetta até às 02h00 da madrugada. Sem preocupação com táxis caros!
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: Dia 14/10 (Qua) -->
+    <section class="slide" data-title="14 Out - Ferry para Salerno">
+      <div class="slide-header">
+        <div class="slide-title-group">
+          <span class="tag-badge tag-lemon">Dia 10 • Quarta-feira, 14 de Outubro de 2026</span>
+          <h2>Capri ➔ Ferry Direto para Salerno ao Entardecer</h2>
+          <p class="slide-subtitle">Navegando de frente para as falésias de Positano e Amalfi</p>
+        </div>
+        <div class="hotel-pill-box">
+          <strong>🍋 Blue Promenade Sea View (4 noites)</strong>
+          <span>Lungomare Trieste 190, Salerno</span>
+        </div>
+      </div>
+
+      <div class="slide-grid">
+        <div>
+          <div class="card-block">
+            <h3>⏰ Cronograma do Dia</h3>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">Manhã & Almoço</div>
+                <div class="timeline-title">Aproveite Capri com Calma</div>
+                <div class="timeline-desc">Café no terraço, praia de seixos em Marina Piccola e check-out às 11h. O hotel guarda as malas com total segurança.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">15h30</div>
+                <div class="timeline-title">Transfer Hotel ➔ Porto Marina Grande</div>
+                <div class="timeline-desc">A van do hotel leva vocês dois com as malas até o cais de embarque.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">16h25 ou 17h15</div>
+                <div class="timeline-title">Ferry Direto Capri ➔ Salerno</div>
+                <div class="timeline-desc">Travessia cênica de ~1h45 pela NLG ou Alicost, navegando com vista do pôr do sol em toda a Costa Amalfitana.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">18h30 ~ 19h00</div>
+                <div class="timeline-title">Desembarque e Check-in em Salerno</div>
+                <div class="timeline-desc">Atraca no porto de Salerno. Táxi de 3 minutos até o seu apartamento beira-mar no *Lungomare Trieste, 190*.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card-block">
+            <h3>📍 Acomodação em Salerno</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 12px;">
+              Localização nota 10: em frente ao mar na melhor orla arborizada da região, e a apenas <strong>400 metros a pé do Centro Histórico</strong> onde acontecem os eventos do casamento!
+            </p>
+            <div class="action-links">
+              <button class="btn-action" onclick="copyAddress('Lungomare Trieste 190, 84121 Salerno SA, Itália')">Copiar Endereço</button>
+              <a class="btn-action primary" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Lungomare+Trieste+190+Salerno">Abrir no Maps ↗</a>
+            </div>
+          </div>
+
+          <div class="highlight-alert">
+            <strong>🛡️ Plano B Documentado:</strong>
+            Caso o mar esteja agitado na costa aberta, o plano alternativo é o ferry rápido para Nápoles (45 min) + trem bala Frecciarossa até Salerno (35 min).
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: Dia 15/10 (Qui) -->
+    <section class="slide" data-title="15 Out - Positano & Ravello">
+      <div class="slide-header">
+        <div class="slide-title-group">
+          <span class="tag-badge tag-lemon">Dia 11 • Quinta-feira, 15 de Outubro de 2026</span>
+          <h2>Bate-Volta: Positano & Ravello + Aperitivo do Casamento</h2>
+          <p class="slide-subtitle">O "Triângulo de Ouro" da Costa pelo mar, sem trânsito</p>
+        </div>
+        <div class="hotel-pill-box">
+          <strong>19h30: Aperitivo em Salerno</strong>
+          <span>Centro Histórico</span>
+        </div>
+      </div>
+
+      <div class="slide-grid">
+        <div>
+          <div class="card-block">
+            <h3>⏰ Cronograma Marítimo de Alta Eficiência</h3>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">08h40</div>
+                <div class="timeline-title">Ferry Travelmar: Salerno ➔ Positano</div>
+                <div class="timeline-desc">Embarque na Piazza della Concordia (a 10 min a pé do quarto). Travessia de 1h10 vendo a encosta inteira.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">10h00 ~ 12h30</div>
+                <div class="timeline-title">Manhã Perfeita em Positano</div>
+                <div class="timeline-desc">Ruelas floridas, lojas de cerâmica, fotos na Spiaggia Grande e café na encosta com sol da manhã.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">12h45</div>
+                <div class="timeline-title">Barco Positano ➔ Amalfi (20 min)</div>
+                <div class="timeline-desc">Desembarque no porto e táxi local de 15 min subindo a montanha até Ravello.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">13h30 ~ 16h45</div>
+                <div class="timeline-title">Almoço & Jardins de Ravello</div>
+                <div class="timeline-desc">Almoço com vista e visita aos terraços suspensos da <strong>Villa Rufolo</strong> ou <strong>Villa Cimbrone</strong>.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">17h30</div>
+                <div class="timeline-title">Ferry Rápido Amalfi ➔ Salerno (25 min)</div>
+                <div class="timeline-desc">Chegada em Salerno às 18h00. Banho e descanso com folga no apartamento.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="highlight-alert">
+            <strong>🥂 19h30: Aperitivo de Boas-Vindas</strong>
+            Encontro com os noivos e convidados no centro histórico de Salerno. Vocês chegam a pé em 5 minutos a partir do Blue Promenade!
+          </div>
+
+          <div class="card-block" style="margin-top: 16px;">
+            <h3>🚢 Por que fazer pelo mar?</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
+              A estrada costeira da Costa Amalfitana tem trânsito pesado e estacionamento em Positano custa €15/hora. Os barcos da <strong>Travelmar</strong> são pontuais, não têm trânsito e a vista da costa do mar é insuperável!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: Dia 16/10 (Sex) -->
+    <section class="slide" data-title="16 Out - Casamento Salerno">
+      <div class="slide-header">
+        <div class="slide-title-group">
+          <span class="tag-badge tag-lemon">Dia 12 • Sexta-feira, 16 de Outubro de 2026</span>
+          <h2>O Grande Dia: Casamento Civil em Salerno 💍</h2>
+          <p class="slide-subtitle">O evento principal da viagem no coração da Campânia</p>
+        </div>
+        <div class="hotel-pill-box">
+          <strong>17h00 - 18h00</strong>
+          <span>Casamento Civil</span>
+        </div>
+      </div>
+
+      <div class="slide-grid">
+        <div>
+          <div class="card-block">
+            <h3>⏰ Programação do Dia</h3>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">Manhã</div>
+                <div class="timeline-title">Manhã Livre & Descanso em Salerno</div>
+                <div class="timeline-desc">Caminhada sem pressa pela orla arborizada do Lungomare Trieste, café expresso e almoço leve.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">14h30 ~ 16h30</div>
+                <div class="timeline-title">Preparação & Vestimentas</div>
+                <div class="timeline-desc">Arrumação com tranquilidade no conforto do apartamento no Blue Promenade.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">17h00 ~ 18h00</div>
+                <div class="timeline-title">Cerimônia do Casamento Civil</div>
+                <div class="timeline-desc">Celebração oficial da união. Deslocamento a pé fácil pelo centro histórico.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">Noite Adentro</div>
+                <div class="timeline-title">Jantar & Festa de Celebração</div>
+                <div class="timeline-desc">Comemoração gastronômica e brinde especial com os recém-casados e amigos.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card-block">
+            <h3>🏰 A Facilidade da Base em Salerno</h3>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 12px;">
+              Estar hospedado no <strong>Blue Promenade</strong> é um alívio logístico no dia do casamento: zero dependência de vans ou motoristas. Vocês fazem tudo caminhando em poucos minutos pela orla plana e elegante.
+            </p>
+            <div class="highlight-alert">
+              <strong>✨ Dica:</strong>
+              A orla de Salerno tem iluminação charmosa à noite, perfeita para fotos de traje social com o mar de fundo.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 13: Dia 17/10 (Sáb) -->
+    <section class="slide" data-title="17 Out - Despedida Salerno">
+      <div class="slide-header">
+        <div class="slide-title-group">
+          <span class="tag-badge tag-lemon">Dia 13 • Sábado, 17 de Outubro de 2026</span>
+          <h2>Brunch de Despedida & Charme de Salerno Medieval</h2>
+          <p class="slide-subtitle">Confraternização com os amigos e tarde de contemplação</p>
+        </div>
+        <div class="hotel-pill-box">
+          <strong>Base: Salerno</strong>
+          <span>Blue Promenade Sea View (Última noite)</span>
+        </div>
+      </div>
+
+      <div class="slide-grid">
+        <div>
+          <div class="card-block">
+            <h3>⏰ Programação de Sábado</h3>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">10h00 ~ 12h30</div>
+                <div class="timeline-title">Encontro de Despedida dos Noivos</div>
+                <div class="timeline-desc">Brunch e abraços de despedida com todos os amigos e familiares do casamento.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">14h00 ~ 17h00</div>
+                <div class="timeline-title">Passeio pelo Centro Histórico de Salerno</div>
+                <div class="timeline-desc">Visite o magnífico <strong>Duomo di Salerno</strong> (Catedral de São Mateus com cripta barroca de mármore) e a histórica <em>Via dei Mercanti</em>.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">Fim de Tarde</div>
+                <div class="timeline-title">Giardino della Minerva</div>
+                <div class="timeline-desc">O primeiro jardim botânico medieval da Europa com terraços escalonados e vista panorâmica do porto.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card-block">
+            <h3>🍽️ Último Jantar na Itália</h3>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 12px;">
+              Sugestão gastronômica em Salerno: <strong>Cicirinella</strong> ou <strong>Ristorante Portovecchio</strong> para uma autêntica massa com mariscos (*scialatielli ai frutti di mare*) e uma garrafa de vinho Greco di Tufo.
+            </p>
+            <div class="highlight-alert">
+              <strong>Check-out amanhã:</strong>
+              Malas prontas para check-out no domingo. O voo de volta é às 19h10 em Nápoles.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 14: Dia 18/10 (Dom) -->
+    <section class="slide" data-title="18 Out - Volta ao Brasil">
+      <div class="slide-header">
+        <div class="slide-title-group">
+          <span class="tag-badge tag-navy">Dia 14 • Domingo, 18 de Outubro de 2026</span>
+          <h2>Salerno ➔ Aeroporto de Nápoles ➔ Voo de Volta</h2>
+          <p class="slide-subtitle">Retorno ágil e seguro para o encerramento da viagem</p>
+        </div>
+        <div class="hotel-pill-box">
+          <strong>✈️ Voo TAP 19h10</strong>
+          <span>Aeroporto NAP ➔ Lisboa ➔ SP</span>
+        </div>
+      </div>
+
+      <div class="slide-grid">
+        <div>
+          <div class="card-block">
+            <h3>⏰ Cronograma de Deslocamento Seguro</h3>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">Manhã Livre</div>
+                <div class="timeline-title">Manhã de Domingo em Salerno</div>
+                <div class="timeline-desc">Check-out às 11h (malas guardadas), passeio na orla e um maravilhoso almoço de despedida até às 14h00.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">14h30</div>
+                <div class="timeline-title">Saída para a Estação Central de Salerno</div>
+                <div class="timeline-desc">Apenas 1 km do Blue Promenade (táxi de 3 minutos).</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">15h00 / 15h15</div>
+                <div class="timeline-title">Trem Bala Frecciarossa/Italo ➔ Napoli</div>
+                <div class="timeline-desc">Apenas <strong>35 minutos nos trilhos</strong> sem pegar trânsito de rodovia. Desembarque na Napoli Centrale.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">16h00</div>
+                <div class="timeline-title">Táxi Estação ➔ Aeroporto de Nápoles</div>
+                <div class="timeline-desc">Corrida de 15 min com <strong>Tarifa Fixa Municipal de € 21,00</strong>.</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-time">16h20</div>
+                <div class="timeline-title">Chegada no Aeroporto Capodichino</div>
+                <div class="timeline-desc">Folga perfeita de 2h50 para check-in de bagagens da TAP e decolagem às 19h10!</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card-block">
+            <h3>🚗 Opção Alternativa: Transfer Privativo</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 12px;">
+              Se preferir não trocar de transporte com as malas, um carro executivo busca vocês na porta do Blue Promenade às <strong>15h30</strong> e deixa no aeroporto às 16h25 por ~€100 a €120.
+            </p>
+            <div class="highlight-alert">
+              <strong>Voo de Conexão:</strong>
+              Voo TAP decola de Nápoles às 19h10, faz conexão rápida de 1h55 em Lisboa (LIS) e segue direto para o Aeroporto de Guarulhos.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 15: Dia 19/10 (Seg) -->
+    <section class="slide" data-title="19 Out - Chegada no Brasil">
+      <div class="slide-header">
+        <div class="slide-title-group">
+          <span class="tag-badge tag-navy">Dia 15 • Segunda-feira, 19 de Outubro de 2026</span>
+          <h2>Pouso em São Paulo & Fim da Jornada</h2>
+          <p class="slide-subtitle">Retorno ao Brasil após duas semanas inesquecíveis</p>
+        </div>
+        <div class="hotel-pill-box">
+          <strong>🇧🇷 São Paulo (GRU)</strong>
+          <span>Chegada às 05h50</span>
+        </div>
+      </div>
+
+      <div class="slide-grid">
+        <div>
+          <div class="card-block">
+            <h3>🛬 Chegada em Casa</h3>
+            <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: 16px;">
+              Pouso no Aeroporto Internacional de Guarulhos às <strong>05h50 da manhã</strong>. Retirada de bagagens na esteira e retorno confortável para casa.
+            </p>
+            <div class="highlight-alert">
+              <strong>Memórias Consolidadas:</strong>
+              Nápoles autêntica, a rota histórica de Matera, a beleza dos Trulli e o mar da Puglia, o luxo dos Faraglioni em Capri e o casamento com os amigos em Salerno!
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card-block" style="text-align: center; padding: 36px 20px;">
+            <span style="font-size: 3rem; display: block; margin-bottom: 12px;">🇮🇹 ✈️ 🇧🇷</span>
+            <h3 style="justify-content: center; margin-bottom: 8px;">Viagem Concluída com Sucesso!</h3>
+            <p style="font-size: 0.88rem; color: var(--text-muted);">
+              Consulte os próximos dois slides para o balanço financeiro detalhado e o guia prático de sobrevivência logística.
+            </p>
+            <button class="btn-action primary" style="margin-top: 18px;" onclick="goToSlide(15)">Ver Balanço Financeiro →</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 16: Painel Financeiro -->
+    <section class="slide" data-title="Finanças">
+      <div class="slide-header">
+        <div class="slide-title-group">
+          <span class="tag-badge tag-lemon">Consolidação Financeira</span>
+          <h2>Resumo de Custos & Balanço de Contas (G vs A)</h2>
+          <p class="slide-subtitle">Todos os itens de voos e hotéis pagos e equalizados</p>
+        </div>
+        <div class="hotel-pill-box">
+          <strong>Total Parcial: R$ 29.372</strong>
+          <span>R$ 14.686 por pessoa</span>
+        </div>
+      </div>
+
+      <div class="slide-grid">
+        <div>
+          <div class="card-block" style="padding: 16px;">
+            <h3>📊 Custos Fechados da Viagem</h3>
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th>Individual (R$)</th>
+                    <th>Conjunto (R$)</th>
+                    <th>Quem Pagou</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Voo Ida (LATAM)</td>
+                    <td>R$ 4.114,00</td>
+                    <td>R$ 8.228,00</td>
+                    <td><strong>G</strong></td>
+                  </tr>
+                  <tr>
+                    <td>Voo Volta (TAP)</td>
+                    <td>R$ 4.203,00</td>
+                    <td>R$ 8.406,00</td>
+                    <td><strong>G</strong></td>
+                  </tr>
+                  <tr>
+                    <td>Hotel Capri (Weber Ambassador)</td>
+                    <td>R$ 1.798,00</td>
+                    <td>R$ 3.596,00</td>
+                    <td><strong>A</strong></td>
+                  </tr>
+                  <tr>
+                    <td>Hotel Salerno (Blue Promenade)</td>
+                    <td>R$ 1.515,00</td>
+                    <td>R$ 3.030,00</td>
+                    <td><strong>A</strong></td>
+                  </tr>
+                  <tr>
+                    <td>Hotel Nápoles (Cimarosa)</td>
+                    <td>R$ 1.347,50</td>
+                    <td>R$ 2.695,00</td>
+                    <td><strong>G</strong></td>
+                  </tr>
+                  <tr>
+                    <td>Hotel Puglia (B&B Pietra Pesara)</td>
+                    <td>R$ 1.708,50</td>
+                    <td>R$ 3.417,00</td>
+                    <td><strong>A</strong></td>
+                  </tr>
+                  <tr class="total-row">
+                    <td>TOTAL PARCIAL</td>
+                    <td>R$ 14.686,00</td>
+                    <td>R$ 29.372,00</td>
+                    <td>Equalizado</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card-block">
+            <h3>⚖️ Balanço Atual de Pagamentos</h3>
+            <div style="background: #fff; border: 1px solid var(--border-light); border-radius: var(--radius-sm); padding: 14px; margin-bottom: 12px; font-size: 0.9rem;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                <span>Total desembolsado por <strong>G</strong>:</span>
+                <strong>R$ 13.012,00</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.8rem; margin-bottom: 8px;">
+                <span>(Inclui Hotel Nápoles e ajuste 2k Breno)</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                <span>Total desembolsado por <strong>A</strong>:</span>
+                <strong>R$ 14.043,00</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.8rem; margin-bottom: 12px;">
+                <span>(Inclui Hotéis Capri, Salerno, Puglia e ajuste 4k Breno)</span>
+              </div>
+              <div style="border-top: 1px dashed var(--border-strong); padding-top: 10px; display: flex; justify-content: space-between; font-weight: 700; color: var(--accent-terracotta);">
+                <span>Diferença a favor de A:</span>
+                <span>R$ 1.031,00</span>
+              </div>
+            </div>
+
+            <div class="highlight-alert" style="margin-top: 0;">
+              <strong>Acerto de Contas Atual:</strong>
+              Para zerar o saldo líquido até aqui, <strong>G transfere R$ 515,50 para A</strong> (ou assume as próximas despesas equivalentes, como o aluguel do carro).
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 17: Guia Prático de Logística -->
+    <section class="slide" data-title="Guia Prático">
+      <div class="slide-header">
+        <div class="slide-title-group">
+          <span class="tag-badge tag-navy">Manual de Sobrevivência</span>
+          <h2>Guia Rápido de Logística & Transportes</h2>
+          <p class="slide-subtitle">Regras essenciais, endereços e tarifas fixas para levar no bolso</p>
+        </div>
+        <div class="hotel-pill-box">
+          <strong>Emergência / Suporte</strong>
+          <span>Telefones & Apps</span>
+        </div>
+      </div>
+
+      <div class="slide-grid">
+        <div>
+          <div class="card-block">
+            <h3>🏨 Contatos dos 4 Hotéis Fechados</h3>
+            <div style="font-size: 0.88rem; line-height: 1.6; color: var(--text-secondary);">
+              <p style="margin-bottom: 10px;">
+                <strong>🍕 Nápoles: Hotel Cimarosa</strong><br>
+                Via Cimarosa 29, 5° Piano, Vomero • Tel: +39 081 5567044<br>
+                <em>(Recepção fecha às 23h30 - Avisar horário de voo!)</em>
+              </p>
+              <p style="margin-bottom: 10px;">
+                <strong>🫒 Puglia: B&B Pietra Pesara</strong><br>
+                Contrada Catuscio Nunzio 9, Locorotondo (BA) • Tel: +39 320 4161516<br>
+                <em>(Estacionamento privativo no local)</em>
+              </p>
+              <p style="margin-bottom: 10px;">
+                <strong>🛥️ Capri: Hotel Weber Ambassador</strong><br>
+                Via Marina Piccola 118, Capri • Tel: +39 081 8370141<br>
+                <em>(Transfer do porto no check-in + Navetta grátis até 02h)</em>
+              </p>
+              <p>
+                <strong>🍋 Salerno: BLUE PROMENADE Sea View</strong><br>
+                Lungomare Trieste 190, Salerno<br>
+                <em>(Na orla, 400m do centro histórico e dos eventos)</em>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="card-block">
+            <h3>🚕 Tabela de Tarifas Fixas de Táxi</h3>
+            <ul style="padding-left: 18px; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6;">
+              <li><strong>Aeroporto NAP ➔ Vomero (Hotel Cimarosa):</strong> Tarifa fixa oficial de <strong>€ 23,00</strong> (tutto incluso: malas e noite).</li>
+              <li><strong>Napoli Centrale ➔ Molo Beverello (Porto):</strong> Tarifa fixa oficial de <strong>€ 13,00</strong>.</li>
+              <li><strong>Napoli Centrale ➔ Aeroporto NAP:</strong> Tarifa fixa oficial de <strong>€ 21,00</strong>.</li>
+              <li><em>Regra:</em> Exija sempre a "Tariffa Fissa" antes do táxi dar a partida.</li>
+            </ul>
+          </div>
+
+          <div class="card-block">
+            <h3>📱 Aplicativos Recomendados para Baixar</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
+              <strong>FreeNow:</strong> O Uber oficial dos táxis italianos (paga pelo app, sem golpe da maquininha).<br>
+              <strong>Trenitalia:</strong> Para os trens Frecciarossa entre Salerno e Nápoles.<br>
+              <strong>Ferryhopper / Travelmar:</strong> Para horários em tempo real dos barcos.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Bottom Floating Navigation Dock -->
+  <nav class="bottom-dock">
+    <button class="dock-nav-arrow" onclick="prevSlide()" title="Slide Anterior">←</button>
+    <div class="dock-divider"></div>
+    
+    <div id="dockPills" style="display: flex; gap: 6px;">
+      <!-- Populated via JS -->
+    </div>
+
+    <div class="dock-divider"></div>
+    <button class="dock-nav-arrow" onclick="nextSlide()" title="Próximo Slide">→</button>
+  </nav>
+
+  <!-- Table of Contents Drawer -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+  <aside class="drawer" id="drawer">
+    <div class="drawer-header">
+      <h3>Sumário da Viagem</h3>
+      <button class="icon-btn" onclick="closeDrawer()">✕</button>
+    </div>
+    <ul class="drawer-list" id="drawerList">
+      <!-- Populated via JS -->
+    </ul>
+  </aside>
+
+  <!-- Copy Toast -->
+  <div class="toast" id="copyToast">Endereço copiado para a área de transferência!</div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const slideNumberEl = document.getElementById('slideNumber');
+    const progressFill = document.getElementById('progressFill');
+    const dockPills = document.getElementById('dockPills');
+    const drawerList = document.getElementById('drawerList');
+    const drawer = document.getElementById('drawer');
+    const drawerOverlay = document.getElementById('drawerOverlay');
+    const menuToggle = document.getElementById('menuToggle');
+    const toast = document.getElementById('copyToast');
+
+    let currentSlide = 0;
+
+    // Build Dock Pills & Drawer List
+    slides.forEach((slide, index) => {
+      const title = slide.getAttribute('data-title') || `Slide ${index + 1}`;
+      
+      // Dock Button
+      const btn = document.createElement('button');
+      btn.className = `dock-btn ${index === 0 ? 'active' : ''}`;
+      btn.textContent = title;
+      btn.onclick = () => goToSlide(index);
+      dockPills.appendChild(btn);
+
+      // Drawer Item
+      const item = document.createElement('li');
+      item.className = `drawer-item ${index === 0 ? 'active' : ''}`;
+      item.innerHTML = `<span>${index === 0 ? '🏠' : (index > 14 ? '📊' : '📍')} ${title}</span>`;
+      item.onclick = () => {
+        goToSlide(index);
+        closeDrawer();
+      };
+      drawerList.appendChild(item);
+    });
+
+    function updateDeck() {
+      slides.forEach((slide, idx) => {
+        slide.classList.toggle('active', idx === currentSlide);
+      });
+
+      // Update Dock
+      const dockBtns = dockPills.querySelectorAll('.dock-btn');
+      dockBtns.forEach((b, idx) => {
+        b.classList.toggle('active', idx === currentSlide);
+        if (idx === currentSlide) {
+          b.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+      });
+
+      // Update Drawer
+      const drawerItems = drawerList.querySelectorAll('.drawer-item');
+      drawerItems.forEach((it, idx) => {
+        it.classList.toggle('active', idx === currentSlide);
+      });
+
+      // Progress & Number
+      const progressPercent = ((currentSlide + 1) / slides.length) * 100;
+      progressFill.style.width = `${progressPercent}%`;
+      const currentFormatted = String(currentSlide + 1).padStart(2, '0');
+      const totalFormatted = String(slides.length).padStart(2, '0');
+      slideNumberEl.textContent = `${currentFormatted} / ${totalFormatted}`;
+
+      // Save state
+      localStorage.setItem('italy_trip_slide_2026', currentSlide);
+    }
+
+    function nextSlide() {
+      if (currentSlide < slides.length - 1) {
+        currentSlide++;
+        updateDeck();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateDeck();
+      }
+    }
+
+    function goToSlide(index) {
+      if (index >= 0 && index < slides.length) {
+        currentSlide = index;
+        updateDeck();
+      }
+    }
+
+    // Keyboard Shortcuts
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        prevSlide();
+      } else if (e.key === 'Escape') {
+        closeDrawer();
+      }
+    });
+
+    // Touch Swipe Support for Mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    document.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+      const swipeDistance = touchEndX - touchStartX;
+      if (Math.abs(swipeDistance) > 50) {
+        if (swipeDistance < 0) {
+          nextSlide(); // Swipe Left
+        } else {
+          prevSlide(); // Swipe Right
+        }
+      }
+    }
+
+    // Drawer Toggle
+    function openDrawer() {
+      drawer.classList.add('open');
+      drawerOverlay.classList.add('open');
+    }
+
+    function closeDrawer() {
+      drawer.classList.remove('open');
+      drawerOverlay.classList.remove('open');
+    }
+
+    menuToggle.onclick = openDrawer;
+
+    // Copy to Clipboard Utility
+    function copyAddress(text) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast("Endereço copiado para a área de transferência!");
+        });
+      } else {
+        const temp = document.createElement('textarea');
+        temp.value = text;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        document.body.removeChild(temp);
+        showToast("Endereço copiado!");
+      }
+    }
+
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+
+    // Restore state on load
+    const savedSlide = localStorage.getItem('italy_trip_slide_2026');
+    if (savedSlide !== null && !isNaN(savedSlide)) {
+      currentSlide = parseInt(savedSlide, 10);
+      if (currentSlide >= slides.length) currentSlide = 0;
+    }
+    updateDeck();
+  </script>
+</body>
+</html>
