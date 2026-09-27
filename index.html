@@ -751,11 +751,11 @@
 
     <div class="header-actions">
       <div class="slide-indicator" id="slideNumber">01 / 18</div>
-      <button class="icon-btn" id="menuToggle" title="Sumário da Viagem">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="3" y1="12" x2="21" y2="12"></line>
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <line x1="3" y1="18" x2="21" y2="18"></line>
+      <button class="icon-btn" id="menuToggle" title="Sumário da Viagem (Menu 3 Pontos)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <circle cx="12" cy="5" r="2.2"></circle>
+          <circle cx="12" cy="12" r="2.2"></circle>
+          <circle cx="12" cy="19" r="2.2"></circle>
         </svg>
       </button>
     </div>
@@ -2124,31 +2124,7 @@
       }
     });
 
-    // Touch Swipe Support for Mobile
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    document.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    document.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    }, { passive: true });
-
-    function handleSwipe() {
-      const swipeDistance = touchEndX - touchStartX;
-      if (Math.abs(swipeDistance) > 50) {
-        if (swipeDistance < 0) {
-          nextSlide(); // Swipe Left
-        } else {
-          prevSlide(); // Swipe Right
-        }
-      }
-    }
-
-    // Drawer Toggle
+    // Drawer Toggle (Menu 3 Pontos)
     function openDrawer() {
       drawer.classList.add('open');
       drawerOverlay.classList.add('open');
