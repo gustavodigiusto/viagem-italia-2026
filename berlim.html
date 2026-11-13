@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Berlim 2026">
+  <meta name="theme-color" content="#0b0f17">
+  <title>Berlim ESMO AI 2026 — Guia & Roteiro Dr. Gustavo</title>
+  <style>
+    :root {
+      --bg: #0b0f17;
+      --card-bg: rgba(23, 32, 48, 0.85);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --primary: #38bdf8;
+      --primary-glow: rgba(56, 189, 248, 0.25);
+      --accent: #f59e0b;
+      --accent-green: #10b981;
+      --accent-purple: #a855f7;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --font-display: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.12) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.1) 0px, transparent 50%);
+      background-attachment: fixed;
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1.5;
+      padding-bottom: 90px;
+    }
+
+    header {
+      padding: 24px 20px 16px;
+      background: rgba(11, 15, 23, 0.9);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .badge-header {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--primary);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.2;
+      background: linear-gradient(135deg, #fff 40%, var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    /* Tabs */
+    .tabs-nav {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 12px 20px;
+      background: rgba(15, 23, 42, 0.6);
+      border-bottom: 1px solid var(--card-border);
+      scrollbar-width: none;
+    }
+    .tabs-nav::-webkit-scrollbar { display: none; }
+
+    .tab-btn {
+      padding: 8px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #0b0f17;
+      border-color: var(--primary);
+      box-shadow: 0 4px 12px var(--primary-glow);
+    }
+
+    main {
+      padding: 18px 18px;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.25s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 18px;
+      margin-bottom: 16px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 10px 24px -10px rgba(0,0,0,0.5);
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 13px;
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-label { color: var(--text-muted); }
+    .info-val { font-weight: 600; text-align: right; }
+
+    /* Map Item Card */
+    .place-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 14px;
+      margin-bottom: 12px;
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+    .place-item:active {
+      transform: scale(0.985);
+      border-color: var(--primary);
+    }
+
+    .place-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .place-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .place-rating {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: #fbbf24;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 8px;
+      white-space: nowrap;
+    }
+
+    .place-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .place-tag {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .btn-maps {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(56, 189, 248, 0.08));
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 10px;
+      margin-top: 6px;
+      transition: all 0.2s;
+    }
+    .btn-maps:hover, .btn-maps:active {
+      background: var(--primary);
+      color: #0b0f17;
+    }
+
+    /* Day schedule timeline */
+    .timeline-day {
+      position: relative;
+      padding-left: 20px;
+      border-left: 2px solid rgba(56, 189, 248, 0.3);
+      margin-bottom: 22px;
+    }
+    .timeline-day::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 0;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 0 8px var(--primary);
+    }
+    .timeline-date {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+    .timeline-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .timeline-pill {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+    .pill-free { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .pill-esmo { background: rgba(56, 189, 248, 0.15); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.3); }
+    .pill-travel { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+
+    .quick-bar {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .quick-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 12px;
+      text-align: center;
+    }
+    .quick-num {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .quick-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="badge-header">🇩🇪 ESMO AI & Digital Oncology 2026</div>
+    <h1>Berlim & Congresso</h1>
+    <div class="subtitle">Dr. Gustavo Di Giusto • 14 a 19 de Nov 2026</div>
+  </header>
+
+  <nav class="tabs-nav">
+    <button class="tab-btn active" onclick="openTab('tempo-livre', this)">⏳ Tempo Livre</button>
+    <button class="tab-btn" onclick="openTab('bairro', this)">🥐 Perto do Hotel (Kantstr.)</button>
+    <button class="tab-btn" onclick="openTab('mitte', this)">☕ Mitte & Café</button>
+    <button class="tab-btn" onclick="openTab('pontos', this)">🏛️ Pontos Turísticos</button>
+    <button class="tab-btn" onclick="openTab('base', this)">📍 Base & Voos</button>
+  </nav>
+
+  <main>
+
+    <!-- ABA 1: CRONOGRAMA & TEMPO LIVRE -->
+    <div id="tempo-livre" class="tab-content active">
+      <div class="quick-bar">
+        <div class="quick-card">
+          <div class="quick-num">100% Livre</div>
+          <div class="quick-sub">Domingo 15/Nov (Dia Nobre)</div>
+        </div>
+        <div class="quick-card">
+          <div class="quick-num">12-15 min</div>
+          <div class="quick-sub">Trem Hotel ➔ CityCube</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📅 Sua Janela Diária</div>
+
+        <div class="timeline-day">
+          <div class="timeline-date">Sábado • 14/Nov</div>
+          <div class="timeline-title">Chegada em Berlim</div>
+          <span class="timeline-pill pill-travel">Pouso 20:50 BER</span>
+          <p class="place-desc">Trem direto FEX/S9 até Zoologischer Garten (~40m). Check-in no hotel e drink descontraído no rooftop do 10º andar.</p>
+        </div>
+
+        <div class="timeline-day">
+          <div class="timeline-date">Domingo • 15/Nov</div>
+          <div class="timeline-title">O Dia Nobre de Exploração</div>
+          <span class="timeline-pill pill-free">100% do Dia Livre</span>
+          <p class="place-desc">Dia ideal para caminhar por Mitte: Portão de Brandemburgo, Memorial do Holocausto, Ilha dos Museus e cafés especiais da Auguststraße.</p>
+        </div>
+
+        <div class="timeline-day">
+          <div class="timeline-date">Segunda • 16/Nov</div>
+          <div class="timeline-title">Manhã Livre + ESMO AI Abertura</div>
+          <span class="timeline-pill pill-free">Livre: 08:00 – 11:30</span>
+          <span class="timeline-pill pill-esmo">ESMO: 12:00 – 18:00</span>
+          <p class="place-desc">Manhã para caminhar no KaDeWe (6º andar) ou Palácio de Charlottenburg. S-Bahn rápida às 11:30 até o congresso. Noite livre após 18h na Kantstraße.</p>
+        </div>
+
+        <div class="timeline-day">
+          <div class="timeline-date">Terça • 17/Nov</div>
+          <div class="timeline-title">ESMO AI Imersão Total</div>
+          <span class="timeline-pill pill-esmo">ESMO: 08:30 – 17:30</span>
+          <span class="timeline-pill pill-free">Livre: Noite (18:00+)</span>
+          <p class="place-desc">Dia mais denso de sessões clínicas e IA. Noite livre para jantar descontraído ou drinques nos arredores de Savignyplatz.</p>
+        </div>
+
+        <div class="timeline-day">
+          <div class="timeline-date">Quarta • 18/Nov</div>
+          <div class="timeline-title">Encerramento ESMO AI + Fim de Tarde Livre</div>
+          <span class="timeline-pill pill-esmo">ESMO: 08:30 – 16:00</span>
+          <span class="timeline-pill pill-free">Livre: Tarde & Noite (16:00+)</span>
+          <p class="place-desc">Congresso encerra cedo! Janela perfeita para ir ao Muro de Berlim (East Side Gallery) ao entardecer e jantar de despedida.</p>
+        </div>
+
+        <div class="timeline-day">
+          <div class="timeline-date">Quinta • 19/Nov</div>
+          <div class="timeline-title">Despedida & Retorno</div>
+          <span class="timeline-pill pill-free">Livre: 08:00 – 11:30</span>
+          <span class="timeline-pill pill-travel">Voo 14:40 BER</span>
+          <p class="place-desc">Café tranquilo na Ku'damm, check-out às 11:30 e trem para o aeroporto BER (chegada às 12:00 com folga para raio-X e imigração).</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABA 2: RESTAURANTES DESCONTRAÍDOS NO BAIRRO DO HOTEL -->
+    <div id="bairro" class="tab-content">
+      <div class="card">
+        <div class="card-title">🍜 Bairro do Hotel (Charlottenburg / Kantstr.)</div>
+        <p class="place-desc" style="margin-bottom: 14px;">A poucos passos do hotel: o melhor da cozinha autêntica informal, bistrôs históricos e street food vibrante (sem formalidades de alta gastronomia).</p>
+
+        <!-- Lon Men's -->
+        <div class="place-item">
+          <div class="place-header">
+            <div>
+              <span class="place-tag">Comida de Rua Taiwanesa</span>
+              <div class="place-name">Lon Men's Noodle House</div>
+            </div>
+            <div class="place-rating">★ 4.5</div>
+          </div>
+          <div class="place-desc">Uma lenda de Berlim. Famoso pela sopa de macarrão com carne bovina (*beef noodle soup*), wontons artesanais em óleo picante e gua bao de porco. Informal, rápido e saborosíssimo.</div>
+          <a class="btn-maps" target="_blank" href="https://maps.google.com/?q=Lon+Mens+Noodle+House+Kantstrasse+Berlin">📍 Abrir no Google Maps</a>
+        </div>
+
+        <!-- Madame Ngo -->
+        <div class="place-item">
+          <div class="place-header">
+            <div>
+              <span class="place-tag">Brasserie Vietnamita</span>
+              <div class="place-name">Madame Ngo</div>
+            </div>
+            <div class="place-rating">★ 4.3</div>
+          </div>
+          <div class="place-desc">Especializada no autêntico Phở vietnamita com caldos aromáticos cozidos pacientemente por até 24 horas. Ambiente charmoso e descontraído na Kantstraße.</div>
+          <a class="btn-maps" target="_blank" href="https://maps.google.com/?q=Madame+Ngo+Kantstrasse+Berlin">📍 Abrir no Google Maps</a>
+        </div>
+
+        <!-- Diener Tattersall -->
+        <div class="place-item">
+          <div class="place-header">
+            <div>
+              <span class="place-tag">Autêntico Schnitzel & Taberna Alemã</span>
+              <div class="place-name">Diener Tattersall</div>
+            </div>
+            <div class="place-rating">★ 4.6</div>
+          </div>
+          <div class="place-desc">Taberna tradicional berlinense (*Kneipe*) de mais de 100 anos. O melhor lugar do bairro para comer um autêntico e crocante Wiener Schnitzel com cerveja gelada em clima rústico.</div>
+          <a class="btn-maps" target="_blank" href="https://maps.google.com/?q=Diener+Tattersall+Berlin">📍 Abrir no Google Maps</a>
+        </div>
+
+        <!-- Paris Bar -->
+        <div class="place-item">
+          <div class="place-header">
+            <div>
+              <span class="place-tag">Bistrô Boêmio & Histórico</span>
+              <div class="place-name">Paris Bar</div>
+            </div>
+            <div class="place-rating">★ 4.0</div>
+          </div>
+          <div class="place-desc">Ponto de encontro lendário de artistas, intelectuais e cineastas em Berlim Ocidental. Paredes cheias de quadros originais. Peça o clássico *entrecôte frites* ou steak tartare.</div>
+          <a class="btn-maps" target="_blank" href="https://maps.google.com/?q=Paris+Bar+Kantstrasse+152+Berlin">📍 Abrir no Google Maps</a>
+        </div>
+
+        <!-- Schwarzes Café -->
+        <div class="place-item">
+          <div class="place-header">
+            <div>
+              <span class="place-tag">Café & Bar Boêmio (Antro do Bowie)</span>
+              <div class="place-name">Schwarzes Café</div>
+            </div>
+            <div class="place-rating">★ 4.3</div>
+          </div>
+          <div class="place-desc">Ícone alternativo desde 1978, refúgio de David Bowie e Iggy Pop. Famoso pelo papagaio em neon e por servir café, cervejas e lanches a qualquer hora da noite.</div>
+          <a class="btn-maps" target="_blank" href="https://maps.google.com/?q=Schwarzes+Cafe+Kantstrasse+148+Berlin">📍 Abrir no Google Maps</a>
+        </div>
+
+        <!-- KaDeWe 6º Andar -->
+        <div class="place-item">
+          <div class="place-header">
+            <div>
+              <span class="place-tag">Mercado Gastronômico Gourmet</span>
+              <div class="place-name">KaDeWe — Die Sechste (6º Andar)</div>
+            </div>
+            <div class="place-rating">★ 4.5</div>
+          </div>
+          <div class="place-desc">O andar gastronômico mais famoso da Alemanha. Dezenas de balcões temáticos: ostras, queijos europeus, vinhos em taça, confeitaria e massas frescas feitas na hora.</div>
+          <a class="btn-maps" target="_blank" href="https://maps.google.com/?q=KaDeWe+Berlin">📍 Abrir no Google Maps</a>
+        </div>
+
+        <!-- Monkey Bar -->
+        <div class="place-item">
+          <div class="place-header">
+            <div>
+              <span class="place-tag">Rooftop com Vista para o Zoológico</span>
+              <div class="place-name">Monkey Bar (Bikini Berlin)</div>
+            </div>
+            <div class="place-rating">★ 4.1</div>
+          </div>
+          <div class="place-desc">A 300m do hotel. Vista panorâmica espetacular do parque Tiergarten e dos macacos do zoológico. Cocktails descolados e ambiente jovem.</div>
+          <a class="btn-maps" target="_blank" href="https://maps.google.com/?q=Monkey+Bar+Berlin">📍 Abrir no Google Maps</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABA 3: MITTE (CAFÉS, BISTRÔS & PIZZA) -->
+    <div id="mitte" class="tab-content">
+      <div class="card">
+        <div class="card-title">☕ Mitte: Cafés Especiais & Street Dining</div>
+        <p class="place-desc" style="margin-bottom: 14px;">O bairro mais descolado de Berlim. Chega-se em 10 min de S-Bahn do hotel até Hackescher Markt / Friedrichstraße.</p>
+
+        <!-- SOFI Bakery -->
+        <div class="place-item">
+          <div class="place-header">
+            <div>
+              <span class="place-tag">Padaria Artesanal Nórdica</span>
+              <div class="place-name">SOFI Bakery</div>
+            </div>
+            <div class="place-rating">★ 4.5</div>
+          </div>
+          <div class="place-desc">Criada pelo chef dinamarquês Frederik Bille Brahe, escondida nos pátios de tijolos da Sophie-Gips-Höfe. Cardamom buns sublimes e pães de fermentação natural.</div>
+          <a class="btn-maps" target="_blank" href="https://maps.google.com/?q=SOFI+Bakery+Berlin">📍 Abrir no Google Maps</a>
+        </div>
+
+        <!-- The Barn -->
+        <div class="place-item">
+          <div class="place-header">
+            <div>
+              <span class="place-tag">Berço do Café Especial</span>
+              <div class="place-name">The Barn Café Mitte</div>
+            </div>
+            <div class="place-rating">★ 4.2</div>
+          </div>
+          <div class="place-desc">A torrefação mais cultuada de Berlim. Espaço rústico e aconchegante na charmosa Auguststraße (rua das galerias de arte). Grãos microlote selecionados.</div>
+          <a class="btn-maps" target="_blank" href="https://maps.google.com/?q=The+Barn+Auguststrasse+Berlin">📍 Abrir no Google Maps</a>
+        </div>
+
+        <!-- Distrikt Coffee -->
+        <div class="place-item">
+          <div class="place-header">
+            <div>
+              <span class="place-tag">Brunch Clássico</span>
+              <div class="place-name">Distrikt Coffee</div>
+            </div>
+            <div class="place-rating">★ 4.4</div>
+          </div>
+          <div class="place-desc">O melhor brunch de Mitte: panquecas fofas de buttermilk, ovos pochê perfeitos, torradas de abacate e café de alta qualidade em ambiente industrial-vintage.</div>
+          <a class="btn-maps" target="_blank" href="https://maps.google.com/?q=Distrikt+Coffee+Berlin">📍 Abrir no Google Maps</a>
+        </div>
+
+        <!-- Katz Orange -->
+        <div class="place-item">
+          <div class="place-header">
+            <div>
+              <span class="place-tag">Bistrô Slow Food & Pátio Histórico</span>
+              <div class="place-name">Katz Orange</div>
+            </div>
+            <div class="place-rating">★ 4.5</div>
+          </div>
+          <div class="place-desc">Pátio interno de uma antiga cervejaria do séc. XIX. Famoso pela carne de porco/cordeiro assada pacientemente por 12 horas, pratos para compartilhar e vinhos naturais.</div>
+          <a class="btn-maps" target="_blank" href="https://maps.google.com/?q=Katz+Orange+Berlin">📍 Abrir no Google Maps</a>
+        </div>
+
+        <!-- Standard Serious Pizza -->
+        <div class="place-item">
+          <div class="place-header">
+            <div>
+              <span class="place-tag">Aclamada Pizza Napolitana</span>
+              <div class="place-name">Standard Serious Pizza</div>
+            </div>
+            <div class="place-rating">★ 4.5</div>
+          </div>
+          <div class="place-desc">Eleita uma das melhores pizzas napolitanas da Alemanha. Massa de longa fermentação, bordas aeradas e ingredientes importados direto da Itália.</div>
+          <a class="btn-maps" target="_blank" href="https://maps.google.com/?q=Standard+Serious+Pizza+Berlin">📍 Abrir no Google Maps</a>
+        </div>
+
+        <!-- Monsieur Vuong -->
+        <div class="place-item">
+          <div class="place-header">
+            <div>
+              <span class="place-tag">Vietnamita Vibrante</span>
+              <div class="place-name">Monsieur Vuong</div>
+            </div>
+            <div class="place-rating">★ 4.3</div>
+          </div>
+          <div class="place-desc">Mais de 5.000 avaliações positivas. Clássico de rua descontraído, pratos frescos, rolinhos primavera e sucos exóticos servidos com agilidade.</div>
+          <a class="btn-maps" target="_blank" href="https://maps.google.com/?q=Monsieur+Vuong+Berlin">📍 Abrir no Google Maps</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABA 4: PONTOS TURÍSTICOS HISTÓRICOS -->
+    <div id="pontos" class="tab-content">
+      <div class="card">
+        <div class="card-title">🏛️ Pontos Turísticos de Berlim</div>
+        <p class="place-desc" style="margin-bottom: 14px;">Os marcos históricos mais impactantes para o seu domingo e intervalos livres.</p>
+
+        <!-- Brandenburger Tor -->
+        <div class="place-item">
+          <div class="place-header">
+            <div>
+              <span class="place-tag">Ícone da Reunificação</span>
+              <div class="place-name">Portão de Brandemburgo</div>
+            </div>
+            <div class="place-rating">★ 4.7 (+150k)</div>
+          </div>
+          <div class="place-desc">O maior símbolo de Berlim e da Alemanha reunificada. Ponto de partida ideal para caminhar pela cidade histórica.</div>
+          <a class="btn-maps" target="_blank" href="https://maps.google.com/?q=Brandenburger+Tor+Berlin">📍 Abrir no Google Maps</a>
+        </div>
+
+        <!-- Memorial do Holocausto -->
+        <div class="place-item">
+          <div class="place-header">
+            <div>
+              <span class="place-tag">Monumento Arquitetônico</span>
+              <div class="place-name">Memorial do Holocausto</div>
+            </div>
+            <div class="place-rating">★ 4.6</div>
+          </div>
+          <div class="place-desc">Labirinto ondulado de 2.711 blocos de concreto cinza perto do Portão de Brandemburgo. Experiência silenciosa e marcante.</div>
+          <a class="btn-maps" target="_blank" href="https://maps.google.com/?q=Memorial+to+the+Murdered+Jews+of+Europe+Berlin">📍 Abrir no Google Maps</a>
+        </div>
+
+        <!-- Reichstag -->
+        <div class="place-item">
+          <div class="place-header">
+            <div>
+              <span class="place-tag">Parlamento Alemão</span>
+              <div class="place-name">Reichstag (Cúpula de Vidro)</div>
+            </div>
+            <div class="place-rating">★ 4.7</div>
+          </div>
+          <div class="place-desc">Edifício histórico com a espetacular cúpula de vidro projetada por Norman Foster. Subida gratuita mediante agendamento prévio no site oficial.</div>
+          <a class="btn-maps" target="_blank" href="https://maps.google.com/?q=Reichstag+Building+Berlin">📍 Abrir no Google Maps</a>
+        </div>
+
+        <!-- Ilha dos Museus -->
+        <div class="place-item">
+          <div class="place-header">
+            <div>
+              <span class="place-tag">Patrimônio Mundial UNESCO</span>
+              <div class="place-name">Ilha dos Museus (Museumsinsel)</div>
+            </div>
+            <div class="place-rating">★ 4.7</div>
+          </div>
+          <div class="place-desc">Complexo de 5 museus de prestígio global no Rio Spree, incluindo o Neues Museum (com o célebre busto de Nefertiti) e a Catedral de Berlim.</div>
+          <a class="btn-maps" target="_blank" href="https://maps.google.com/?q=Museum+Island+Berlin">📍 Abrir no Google Maps</a>
+        </div>
+
+        <!-- East Side Gallery -->
+        <div class="place-item">
+          <div class="place-header">
+            <div>
+              <span class="place-tag">Muro de Berlim a Céu Aberto</span>
+              <div class="place-name">East Side Gallery</div>
+            </div>
+            <div class="place-rating">★ 4.6</div>
+          </div>
+          <div class="place-desc">O trecho contínuo mais longo ainda em pé do Muro de Berlim (1,3 km), com pinturas históricas e a famosa ponte Oberbaumbrücke ao lado.</div>
+          <a class="btn-maps" target="_blank" href="https://maps.google.com/?q=East+Side+Gallery+Berlin">📍 Abrir no Google Maps</a>
+        </div>
+
+        <!-- Topografia do Terror -->
+        <div class="place-item">
+          <div class="place-header">
+            <div>
+              <span class="place-tag">Documentação Histórica</span>
+              <div class="place-name">Topografia do Terror</div>
+            </div>
+            <div class="place-rating">★ 4.6</div>
+          </div>
+          <div class="place-desc">Instalado no local onde ficava a sede da Gestapo e da SS, conta a ascensão e queda do nazismo com trecho autêntico do muro preservado. Entrada gratuita.</div>
+          <a class="btn-maps" target="_blank" href="https://maps.google.com/?q=Topography+of+Terror+Berlin">📍 Abrir no Google Maps</a>
+        </div>
+
+        <!-- Gedächtniskirche -->
+        <div class="place-item">
+          <div class="place-header">
+            <div>
+              <span class="place-tag">Em Frente ao Seu Hotel</span>
+              <div class="place-name">Kaiser-Wilhelm-Gedächtniskirche</div>
+            </div>
+            <div class="place-rating">★ 4.5</div>
+          </div>
+          <div class="place-desc">A torre em ruínas mantida como monumento à paz após os bombardeios da Segunda Guerra, com a moderna capela azul hexagonal anexa.</div>
+          <a class="btn-maps" target="_blank" href="https://maps.google.com/?q=Kaiser+Wilhelm+Memorial+Church+Berlin">📍 Abrir no Google Maps</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABA 5: BASE, HOTEL & VOOS -->
+    <div id="base" class="tab-content">
+      <div class="card">
+        <div class="card-title">🏨 Sua Hospedagem</div>
+        <div class="info-row">
+          <span class="info-label">Hotel</span>
+          <span class="info-val">The Cloud One Berlin – Upper West</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Endereço</span>
+          <span class="info-val">Kantstraße 163-165, Charlottenburg</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Estação Vizinha</span>
+          <span class="info-val">S+U Zoologischer Garten (2 min a pé)</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Para o ESMO AI</span>
+          <span class="info-val">S-Bahn S3 / S9 até Messe Süd (12-15 min)</span>
+        </div>
+        <a class="btn-maps" style="width: 100%; margin-top: 10px;" target="_blank" href="https://maps.google.com/?q=The+Cloud+One+Berlin+Upper+West+Kantstrasse+163-165+Berlin">📍 Abrir Hotel no Google Maps</a>
+      </div>
+
+      <div class="card">
+        <div class="card-title">✈️ Malha de Voos</div>
+        <div class="info-row">
+          <span class="info-label">Ida</span>
+          <span class="info-val">Sex 13/Nov 23:10 (GRU) ➔ Sáb 20:50 (BER)</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Volta</span>
+          <span class="info-val">Qui 19/Nov 14:40 (BER) ➔ Sex 05:05 (GRU)</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Chegada ao BER (Volta)</span>
+          <span class="info-val">Estar no aeroporto às 12:00</span>
+        </div>
+        <a class="btn-maps" style="width: 100%; margin-top: 10px;" target="_blank" href="https://maps.google.com/?q=Berlin+Brandenburg+Airport+BER">📍 Abrir Aeroporto BER no Google Maps</a>
+      </div>
+
+      <div class="card">
+        <div class="card-title">💡 Dicas Práticas Essenciais</div>
+        <div class="info-row">
+          <span class="info-label">Passe de Transporte</span>
+          <span class="info-val">Comprar ticket Berlin ABC (cobre o aeroporto BER)</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Clima Novembro</span>
+          <span class="info-val">3°C a 8°C • Escurece cedo (~16:15)</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Dinheiro</span>
+          <span class="info-val">Alguns cafés e pubs aceitam apenas dinheiro (Cash/Geld)</span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    function openTab(tabId, element) {
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(content => content.classList.remove('active'));
+
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+
+      document.getElementById(tabId).classList.add('active');
+      element.classList.add('active');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Suporte Offline PWA Instantâneo (Service Worker Cache)
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        const swScript = `
+          const CACHE_NAME = 'berlim-esmo-v1';
+          self.addEventListener('install', e => {
+            self.skipWaiting();
+          });
+          self.addEventListener('activate', e => {
+            e.waitUntil(clients.claim());
+          });
+          self.addEventListener('fetch', e => {
+            e.respondWith(
+              fetch(e.request).catch(() => caches.match(e.request))
+            );
+          });
+        `;
+        const blob = new Blob([swScript], { type: 'application/javascript' });
+        navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>
